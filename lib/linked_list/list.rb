@@ -100,8 +100,8 @@ module LinkedList
     end
 
     def to_s
-      nodes = collect_nodes(collection: [], node_message: :to_s)
-      "{ #{nodes.join(', ')} }"
+      elements = collect_nodes(collection: [], node_message: :to_s).join(', ')
+      "{ #{elements} }"
     end
     alias_method :inspect, :to_s
 
