@@ -11,7 +11,7 @@ module LinkedList
   class << self
     # reverse the given list non-destructively
     def reverse(list, using_collection:)
-      list.collect_nodes(collection: using_collection, node_message: :value)
+      list.reverse(collection: using_collection)
     end
 
     # reverse the given list in-place

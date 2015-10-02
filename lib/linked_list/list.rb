@@ -30,16 +30,6 @@ module LinkedList
       end
     end
 
-    # alias for #at getter
-    def [](index)
-      at(index)
-    end
-
-    # alias for #at setter
-    def []=(index, value)
-      at(index, value)
-    end
-
     # append to the list
     def unshift(value)
       new_head = Node.new(value: value, next_node: head)
@@ -103,16 +93,8 @@ module LinkedList
       set(position, set_value)
     end
 
-    # Reverses the list by building a list of equivalent length and populating
-    # it with the values of `self` in reverse order. Does not attempt to be
-    # efficient. Operates in quadratic time.
-    def reverse
-      List.build(length).tap do |reversed_list|
-        each do |node, idx|
-          rtl_posn = length - idx.pred
-          reversed_list[rtl_posn] = node.value
-        end
-      end
+    def reverse(collection: [])
+      collect_nodes(collection: collection, node_message: :value)
     end
 
     # Reverses the linked list in place
