@@ -130,7 +130,6 @@ module LinkedList
       elements = collect_nodes(collection: [], node_message: :to_s).join(', ')
       "{ #{elements} }"
     end
-    alias_method :inspect, :to_s
 
     private
 

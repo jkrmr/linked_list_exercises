@@ -18,6 +18,5 @@ module LinkedList
     def to_s
       "#{value || '_'}"
     end
-    alias_method :inspect, :to_s
   end
 end

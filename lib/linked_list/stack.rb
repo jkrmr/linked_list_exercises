@@ -18,6 +18,5 @@ module LinkedList
     def to_s
       list.to_s
     end
-    alias_method :inspect, :to_s
   end
 end
