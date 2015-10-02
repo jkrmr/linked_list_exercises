@@ -27,7 +27,7 @@ For a finite list:
 ```
 λ detect_infinite_list 5
 
-Usage: detect_infinite_list [LIST_LENGTH]   # default: 5, for infinite: inf"
+Usage: detect_infinite_list [LIST_LENGTH]   # default: 5, for infinite: inf
 
 Finite list:
 { 8, 1, 4, 5, 2 }
@@ -41,7 +41,7 @@ For an infinite list:
 ```
 λ detect_infinite_list inf
 
-Usage: detect_infinite_list [LIST_LENGTH]   # default: 5, for infinite: inf"
+Usage: detect_infinite_list [LIST_LENGTH]   # default: 5, for infinite: inf
 
 Infinite list:
 #<LinkedList::List:0x007fa6bb80b3a8 @length=3, @head=#<LinkedList::Node:0x007fa6bb80b358 @value=0, @next_node=#<LinkedList::Node:0x007fa6bb80b268 @value=1, @next_node=#<LinkedList::Node:0x007fa6bb80b2e0 @value=2, @next_node=#<LinkedList::Node:0x007fa6bb80b358 ...>>>>>

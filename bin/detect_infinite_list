@@ -9,7 +9,7 @@ include LinkedList
 include FloydsCycleDetector
 
 puts <<-HELP
-Usage: detect_infinite_list [LIST_LENGTH]   # default: 5, for infinite: inf"
+Usage: detect_infinite_list [LIST_LENGTH]   # default: 5, for infinite: inf
 
 HELP
 
