@@ -1,0 +1,28 @@
+#!/usr/bin/env ruby
+
+$LOAD_PATH.unshift "#{Dir.getwd}/lib"
+
+require 'linked_list'
+require 'floyds_cycle_detector'
+
+include LinkedList
+include FloydsCycleDetector
+
+puts <<-HELP
+Usage: detect_infinite_list [LIST_LENGTH]   # default: 5, for infinite: inf"
+
+HELP
+
+if ARGV.first == 'inf'
+  list = List.build_cyclically_infinite
+
+  puts "Infinite list:"
+  p list
+  puts "", "Cycle detection result:", FloydsCycleDetector.infinite?(list)
+else
+  list_length = (ARGV.first || 5).to_i
+  list = List.build(list_length) { rand(10) } # => { 0, 4, 4, 5, 4 }
+
+  puts "Finite list:", list, ""
+  puts "Cycle detection result:", FloydsCycleDetector.infinite?(list)
+end

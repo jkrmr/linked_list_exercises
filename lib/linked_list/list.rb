@@ -8,9 +8,25 @@ module LinkedList
     def self.build(length)
       fail ArgumentError, 'negative list length' if length < 0
 
-      List.new.tap do |list|
+      new.tap do |list|
         list.length = length
-        list.head = LinkedList::Node.build_links(length) { block_given? ? yield : nil }
+        list.head = Node.build_links(length) { block_given? ? yield : nil }
+      end
+    end
+
+    # buils a cyclically infinite linked list with 3 nodes
+    #
+    # @return [List] a linked list
+    def self.build_cyclically_infinite
+      new.tap do |list|
+        list.length = 3
+        list.head = Node.new(value: 0).tap do |knot|
+          last  = Node.new(value: 2, next_node: knot)
+          first = Node.new(value: 1, next_node: last)
+          knot.next_node = first
+        end
+
+        list.define_singleton_method(:to_s) { "infinite" }
       end
     end
 
