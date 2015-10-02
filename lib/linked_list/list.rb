@@ -99,6 +99,33 @@ module LinkedList
       end
     end
 
+    # Reverses the linked list in place
+    def reverse!
+      return self if length.zero?
+
+      prev = nil
+      curr = head
+
+      until curr.nil?
+        # next will be curr's successor
+        nxt = curr.next_node
+
+        # reverse: set curr's successor to the previous node
+        curr.next_node = prev
+
+        # new previous ptr points to curr
+        prev = curr
+
+        # advance curr ptr to curr's successor
+        curr = nxt
+      end
+
+      head.next_node = nil
+      self.head = prev
+
+      self
+    end
+
     def to_s
       elements = collect_nodes(collection: [], node_message: :to_s).join(', ')
       "{ #{elements} }"
@@ -117,6 +144,11 @@ module LinkedList
 
     def set(posn, set_value)
       traverse(to_posn: posn) { |node| return node.value = set_value }
+    end
+
+    def next_node
+      return if curr.nil?
+      curr.next_node
     end
 
     # advances the curr pointer to the next node in the list

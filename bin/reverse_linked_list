@@ -1,0 +1,24 @@
+#!/usr/bin/env ruby
+
+$LOAD_PATH.unshift "#{Dir.getwd}/lib"
+
+require 'linked_list'
+include LinkedList
+
+puts "Usage: reversed_linked_list [LIST_LENGTH]", ""
+
+list_length = (ARGV[0] || 0).to_i
+
+list = List.build(list_length) { rand(10) } # => { 5, 0, 6, 2, 8 }
+puts "original linked list:", list
+
+# reverses without mutation
+stack = Stack.new # => {  }
+reversed = LinkedList.reverse(list, using_collection: stack) # => { 8, 2, 6, 0, 5 }
+puts "reversed (sans mutation):", reversed
+
+# reverses in place
+reversed_in_place = LinkedList.reverse!(list) # => { 8, 2, 6, 0, 5 }
+puts "reversed (in-place)", reversed_in_place
+
+

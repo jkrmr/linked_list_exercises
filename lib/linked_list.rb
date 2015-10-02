@@ -8,15 +8,19 @@ module LinkedList
   # implements the stack adt using a linear linked list
   class Stack; end
 
-  # reverses a linked list without mutation
-  class Reverser; end
+  class << self
+    # reverse the given list non-destructively
+    def reverse(list, using_collection:)
+      list.collect_nodes(collection: using_collection, node_message: :value)
+    end
 
-  # reverses a linked list in place
-  class DestructiveReverser; end
+    # reverse the given list in-place
+    def reverse!(list)
+      list.reverse!
+    end
+  end
 end
 
 require 'linked_list/node'
 require 'linked_list/list'
 require 'linked_list/stack'
-require 'linked_list/reverser'
-require 'linked_list/destructive_reverser'
