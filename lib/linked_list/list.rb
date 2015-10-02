@@ -53,6 +53,25 @@ module LinkedList
       self
     end
 
+    # collects nodes, or the response from a message-send to the nodes, in the
+    # passed-in `collection`
+    def collect_nodes(collection:, node_message: nil)
+      each { |node| collection << response_or_receiver(node, node_message) }
+      collection
+    end
+
+    # iterates through the linked list, yielding each node in turn
+    def each
+      reset_and_return_nil do
+        loop do
+          yield(curr, curr_index)
+          next!
+
+          break if curr_index > length
+        end
+      end
+    end
+
     # Sets the value of the node at position `position` when passed `set_value`,
     # else gets the value of the node at position `position`.
     #
@@ -123,31 +142,12 @@ module LinkedList
       self.length = length.succ
     end
 
-    # collects nodes, or the response from a message-send to the nodes, in the
-    # passed-in `collection`
-    def collect_nodes(collection:, node_message: nil)
-      each { |node| collection << response_or_receiver(node, node_message) }
-      collection
-    end
-
     # returns the response from a message-send from the receiver, or, if no
     # message is passed, the receiver itself
     def response_or_receiver(receiver, message = nil)
       return receiver if message.nil?
 
       receiver.send(message)
-    end
-
-    # iterates through the linked list, yielding each node in turn
-    def each
-      reset_and_return_nil do
-        loop do
-          yield(curr, curr_index)
-          next!
-
-          break if curr_index > length
-        end
-      end
     end
 
     # traverses the linked list to the requested 1-indexed position and yields
