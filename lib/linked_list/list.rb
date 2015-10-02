@@ -3,15 +3,14 @@ module LinkedList
     attr_accessor :head, :curr, :curr_index, :length
 
     # @param [Integer] length - the desired length of the list
-    # @param [Object] value - the default value for each node
     #
     # @return [List] a linked list of length `length`
-    def self.build(length, value = nil)
+    def self.build(length)
       fail ArgumentError, 'negative list length' if length < 0
 
       List.new.tap do |list|
         list.length = length
-        list.head = LinkedList::Node.build_links(length, value)
+        list.head = LinkedList::Node.build_links(length) { block_given? ? yield : nil }
       end
     end
 

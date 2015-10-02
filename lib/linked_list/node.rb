@@ -2,9 +2,12 @@ module LinkedList
   class Node
     attr_accessor :value, :next_node
 
-    def self.build_links(size, value)
+    def self.build_links(size)
       return if size == 0
-      Node.new(value: value, next_node: build_links(size.pred, value))
+      Node.new(
+        value: (yield || nil),
+        next_node: build_links(size.pred) { yield || nil }
+      )
     end
 
     def initialize(value:, next_node: nil)
