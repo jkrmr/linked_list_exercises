@@ -9,6 +9,7 @@ module LinkedList
     def push(value)
       list.unshift value
     end
+    alias_method :<<, :push
 
     def pop
       list.shift
